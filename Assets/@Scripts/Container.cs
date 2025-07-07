@@ -36,10 +36,4 @@ public class Container : MonoBehaviour
     {
         item = newItem;
     }
-
-    public void Reset()
-    {
-        item = null;
-        color = ObjectColor.None;
-    }
 }

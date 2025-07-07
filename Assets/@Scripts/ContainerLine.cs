@@ -24,7 +24,6 @@ public class ContainerLine : MonoBehaviour
 
         foreach (var container in containers)
         {
-            container.Reset(); // 컨테이너 초기화
             container.Init(GameFlowControl.Instance.GameSystemControl.colorMaterialTable.GetColorMaterial(color).Value, LineIndex, index); // 컨테이너에 인덱스 및 컬러 할당
             containerDictioanry.Add(index, container); // 컨테이너를 딕셔너리에 추가
             index++;

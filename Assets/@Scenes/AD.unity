@@ -168,9 +168,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153d213a8b35f3b47a267ce472e902b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorMaterialTable: {fileID: 0}
+  colorMaterialTable: {fileID: 11400000, guid: 50c6a0ee0ce8f2948adeb08b91692371, type: 2}
   timeLimit: 60
   inputControl: {fileID: 1545462878}
+  containerLines:
+  - {fileID: 1064143566}
+  - {fileID: 1218343612}
+  - {fileID: 226412779}
+  - {fileID: 1634537529}
+  - {fileID: 883455378}
+  - {fileID: 1439829732}
+  - {fileID: 1193634650}
 --- !u!1 &85701162
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,13 +208,13 @@ Transform:
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1193634649}
-  - {fileID: 1439829731}
-  - {fileID: 883455377}
-  - {fileID: 1634537528}
-  - {fileID: 226412778}
-  - {fileID: 1218343611}
   - {fileID: 1064143565}
+  - {fileID: 1218343611}
+  - {fileID: 226412778}
+  - {fileID: 1634537528}
+  - {fileID: 883455377}
+  - {fileID: 1439829731}
+  - {fileID: 1193634649}
   m_Father: {fileID: 38464338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &139163764
