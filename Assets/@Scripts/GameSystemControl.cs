@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 /// <summary>
@@ -6,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class GameSystemControl : MonoBehaviour
 {
+    public float ContainerYDelta { get => containerYDelta; }
+
     public ColorMaterialScriptableObject colorMaterialTable;
 
     [Space(30f)]
@@ -17,6 +20,10 @@ public class GameSystemControl : MonoBehaviour
     [SerializeField] private MyObjectPool.ObjectPool itemPool;
     [SerializeField] private List<ContainerLine> containerLines;
     [SerializeField] private SharedContainer sharedContainer;
+    [SerializeField] private float containerYDelta = 1.02f; // 컨테이너 Y축 크기
+
+    [Space]
+    [SerializeField] private ParticleSystem lineClearParticle;
 
     private Dictionary <int, ContainerLine> containerLineDictionary = new Dictionary<int, ContainerLine>();
     private float endTime = 0.0f;
@@ -91,9 +98,23 @@ public class GameSystemControl : MonoBehaviour
         to.SetItem(from.GetItem()); // to에 아이템 설정
         from.SetItem(null);
 
-        if (CheckLine(to.GetLineIndex()))
+        int lineIndex = to.GetLineIndex();
+
+        if (CheckLine(lineIndex))
         {
             Debug.Log("성공");
+
+            lineClearParticle.transform.position = containerLineDictionary[lineIndex].transform.position - Vector3.forward * 1f;
+            lineClearParticle.Play();
+
+            containerLineDictionary[lineIndex].Clear(); // 라인 클리어 처리
+
+            for (int fallLineIndex = lineIndex + 1; fallLineIndex < containerLineDictionary.Count; fallLineIndex++) // 더 위에 있는 라인 추락 처리
+            {
+                containerLineDictionary[fallLineIndex].Fall();
+            }
+
+            sharedContainer.Fall(); // 공유 컨테이너도 추락 처리
         }
 
         return true;
@@ -130,6 +151,9 @@ public class GameSystemControl : MonoBehaviour
 
             containerLineIndex++;
         }
+
+        // 공유 컨테이너 위치 설정
+        sharedContainer.transform.localPosition = Vector3.up * containerLines.Count * ContainerYDelta;
 
         // 아이템 생성
         List<Item> tempItemList = new List<Item>();
