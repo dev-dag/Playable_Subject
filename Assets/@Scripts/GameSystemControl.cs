@@ -31,6 +31,7 @@ public class GameSystemControl : MonoBehaviour
 
     private Dictionary <int, ContainerLine> containerLineDictionary = new Dictionary<int, ContainerLine>();
     private float endTime = 0.0f;
+    private GameState gameState = GameState.Wait;
 
 #if UNITY_EDITOR
     private void OnGUI()
@@ -68,8 +69,13 @@ public class GameSystemControl : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time >= endTime)
+        if (gameState is GameState.Fail or GameState.Clear)
         {
+            return;
+        }
+        else if (Time.time >= endTime)
+        {
+            gameState = GameState.Fail;
             timerTmp.text = "0s"; // 타이머가 끝나면 0으로 표시
             inputControl.Disable();
             GameFlowControl.Instance.FailGame();
@@ -86,6 +92,8 @@ public class GameSystemControl : MonoBehaviour
     public void InitialzieAndStart()
     {
         Reset();
+
+        gameState = GameState.Playing;
 
         containerLineDictionary.Clear();
         endTime = Time.time + timeLimit;
@@ -153,6 +161,7 @@ public class GameSystemControl : MonoBehaviour
 
             if (isEveryContainerCleared)
             {
+                gameState = GameState.Clear;
                 GameFlowControl.Instance.ClearGame(); // 모든 컨테이너가 클리어되면 게임 클리어 처리
             }
         }

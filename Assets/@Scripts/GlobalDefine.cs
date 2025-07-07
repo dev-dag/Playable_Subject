@@ -32,3 +32,15 @@ public enum ObjectColor
     Orange,
     Mint
 }
+
+/// <summary>
+/// 게임의 상태
+/// </summary>
+public enum GameState
+{
+    Wait,
+    Playing,
+    Pause,
+    Fail,
+    Clear,
+}
