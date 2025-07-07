@@ -3761,8 +3761,8 @@ MonoBehaviour:
   playNowTmp: {fileID: 119944511}
   restartTmp: {fileID: 1303704978}
   restartButtonObject: {fileID: 57116014}
-  playNowText: "\uB2E4\uC6B4\uB85C\uB4DC"
-  restartText: "\uC7AC\uC2DC\uC791!"
+  playNowText: Play Now!
+  restartText: Restart!
   downloadPageUrl: naver.com
 --- !u!114 &1437368218
 MonoBehaviour:
