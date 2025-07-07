@@ -11,8 +11,11 @@ public class GameFlowControl : SingleTon<GameFlowControl>
     [SerializeField] private GameSystemControl gameSystemControl;
 
     private bool isNeedTutorial = true;
-    private int restartableCount = 3;
-    private int playCount = 0;
+
+    [LunaPlaygroundField(fieldTitle: "Restartable Count")]
+    public int restartableCount = 3; // 재시작 가능한 횟수
+    [LunaPlaygroundField(fieldTitle: "Try Count")]
+    public int playCount = 0;
 
     protected override void Awake()
     {
