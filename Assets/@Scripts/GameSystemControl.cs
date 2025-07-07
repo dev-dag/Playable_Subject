@@ -32,9 +32,19 @@ public class GameSystemControl : MonoBehaviour
 #if UNITY_EDITOR
     private void OnGUI()
     {
-        if (GUI.Button(new Rect(10, 10, 100, 30), "Re Init"))
+        if (GUI.Button(new Rect(10, 10, 100, 30), "Restart"))
         {
             InitialzieAndStart();
+        }
+
+        if (GUI.Button(new Rect(10, 50, 100, 30), "Clear"))
+        {
+            GameFlowControl.Instance.ClearGame();
+        }
+
+        if (GUI.Button(new Rect(10, 90, 100, 30), "Fail"))
+        {
+            GameFlowControl.Instance.FailGame();
         }
     }
 #endif
