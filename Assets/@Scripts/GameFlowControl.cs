@@ -46,6 +46,9 @@ public class GameFlowControl : SingleTon<GameFlowControl>
         {
             endCardControl.ShowEndCard(false);
         }
+
+        Luna.Unity.Analytics.LogEvent(Luna.Unity.Analytics.EventType.LevelFailed);
+        Luna.Unity.Analytics.LogEvent(Luna.Unity.Analytics.EventType.EndCardShown);
     }
 
     /// <summary>
@@ -61,5 +64,8 @@ public class GameFlowControl : SingleTon<GameFlowControl>
         {
             endCardControl.ShowEndCard(false);
         }
+
+        Luna.Unity.Analytics.LogEvent(Luna.Unity.Analytics.EventType.LevelWon);
+        Luna.Unity.Analytics.LogEvent(Luna.Unity.Analytics.EventType.EndCardShown);
     }
 }
