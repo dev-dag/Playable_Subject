@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 /// <summary>
 /// 컨테이너의 집합을 제어하는 클래스
@@ -10,9 +11,9 @@ public class ContainerLine : MonoBehaviour
 {
     public int LineIndex { get; private set; } = -1;
     public ObjectColor Color { get; private set; }
-    public Dictionary<int, Container> containerDictioanry = new Dictionary<int, Container>();
+    public Dictionary<int, FixedContainer> containerDictioanry = new Dictionary<int, FixedContainer>();
 
-    [SerializeField] private List<Container> containers;
+    [SerializeField] private List<FixedContainer> containers;
 
     public float time1 = 0.5f;
     public Ease ease1 = Ease.Linear;
@@ -21,11 +22,27 @@ public class ContainerLine : MonoBehaviour
     public float time3 = 0.1f;
     public Ease ease3 = Ease.Linear;
 
+    private bool isPlayingAnimation = false;
+
     public void Reset()
     {
         foreach (var container in containers)
         {
             container.Reset();
+        }
+    }
+
+    private void Update()
+    {
+        if (isPlayingAnimation) // 애니메이션 중에 아이템이 따라오도록 설정
+        {
+            foreach (var container in containers)
+            {
+                if (container.Item != null)
+                {
+                    container.Item.SetPosition(container.transform.position + container.ItemOffset); // 아이템의 위치를 컨테이너 위치로 설정
+                }
+            }
         }
     }
 
@@ -70,13 +87,18 @@ public class ContainerLine : MonoBehaviour
     {
         var yDelta = GameFlowControl.Instance.GameSystemControl.ContainerYDelta;
 
-        transform.DOMoveY(transform.position.y - yDelta, time1, true).SetEase(ease1).OnComplete(() =>
+        isPlayingAnimation = true;
+
+        transform.DOMoveY(transform.position.y - yDelta, time1).SetEase(ease1).OnComplete(() =>
         {
             yDelta /= 2f;
 
-            transform.DOMoveY(transform.position.y + yDelta, time2, true).SetEase(ease2).OnComplete(() =>
+            transform.DOMoveY(transform.position.y + yDelta, time2).SetEase(ease2).OnComplete(() =>
             {
-                transform.DOMoveY(transform.position.y - yDelta, time3, true).SetEase(ease3);
+                transform.DOMoveY(transform.position.y - yDelta, time3).SetEase(ease3).OnComplete(() =>
+                {
+                    isPlayingAnimation = false;
+                });
             });
         });
     }
@@ -88,7 +110,7 @@ public class ContainerLine : MonoBehaviour
     {
         foreach (var container in containers)
         {
-            container.GetItem()?.Return(); // 컨테이너에 있는 아이템을 풀에 반환
+            container.Item?.Return(); // 컨테이너에 있는 아이템을 풀에 반환
             container.Reset(); // 컨테이너 초기화
         }
 

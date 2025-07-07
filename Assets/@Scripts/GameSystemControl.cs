@@ -46,7 +46,7 @@ public class GameSystemControl : MonoBehaviour
             containerLine.Reset(); // 컨테이너 라인 초기화
         }
 
-        sharedContainer.GetItem()?.Return();
+        sharedContainer.Reset();
 
         containerLineDictionary.Clear();
         endTime = 0f;
@@ -83,19 +83,19 @@ public class GameSystemControl : MonoBehaviour
     /// <param name="from">원래 아이템이 있던 컨테이너</param>
     /// <param name="to">이동시킬 컨테이너</param>
     /// <returns>to에 아이템이 있으면 false반환.</returns>
-    public bool MoveItem(IContainer from, IContainer to)
+    public bool MoveItem(Container from, Container to)
     {
-        if (to.GetItem() != null)
+        if (to.Item != null)
         {
-            from.SetItem(from.GetItem());
+            from.SetItem(from.Item);
             return false;
         }
-        else if (from.GetItem() == null)
+        else if (from.Item == null)
         {
             return false;
         }
 
-        to.SetItem(from.GetItem()); // to에 아이템 설정
+        to.SetItem(from.Item); // to에 아이템 설정
         from.SetItem(null);
 
         int lineIndex = to.GetLineIndex();
@@ -199,7 +199,7 @@ public class GameSystemControl : MonoBehaviour
 
             foreach (var container in containerDictioanry.Values)
             {
-                if (container.GetItem()?.color != lineColor)
+                if (container.Item?.color != lineColor)
                 {
                     return false;
                 }

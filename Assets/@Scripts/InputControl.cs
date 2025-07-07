@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 /// <summary>
 /// 입력을 처리하는 클래스
@@ -11,7 +12,7 @@ public class InputControl : MonoBehaviour
     [SerializeField] private float raycastDistance = 10f;
 
     private GameSystemControl gameSystemControl;
-    private IContainer holdingContainer;
+    private Container holdingContainer;
 
     private void Update()
     {
@@ -70,11 +71,11 @@ public class InputControl : MonoBehaviour
             if (Physics.Raycast(ray, out var hit, raycastDistance, LayerMask.GetMask(LayerNameDefine.CONTAINER_LAYER_NAME))) // Container Layer 캐스트
             {
                 // 히트 오브젝트가 IContainer인터페이스를 구현하는 컴포넌트를 가지고 있는지 확인
-                var hitContainer = hit.collider.GetComponent<IContainer>();
-                if (hitContainer != null && hitContainer.GetItem() != null) // 아이템을 가지고 있는 컨테이너 인 경우에만 캐싱함.
+                var hitContainer = hit.collider.GetComponent<Container>();
+                if (hitContainer != null && hitContainer.Item != null) // 아이템을 가지고 있는 컨테이너 인 경우에만 캐싱함.
                 {
                     holdingContainer = hitContainer; // holdingContainer에 캐싱
-                    holdingContainer.GetGameObject().layer = LayerMask.NameToLayer(LayerNameDefine.HOLDING_CONTAINER_LAYER_NAME); // 다른 오브젝트를 레이 캐스트가 발견할 수 있게 레이어 임시 변경
+                    holdingContainer.gameObject.layer = LayerMask.NameToLayer(LayerNameDefine.HOLDING_CONTAINER_LAYER_NAME); // 다른 오브젝트를 레이 캐스트가 발견할 수 있게 레이어 임시 변경
                 }
             }
         }
@@ -90,22 +91,22 @@ public class InputControl : MonoBehaviour
 
             if (Physics.Raycast(ray, out var hit, raycastDistance, LayerMask.GetMask(LayerNameDefine.CONTAINER_LAYER_NAME)))
             {
-                var hitContainer = hit.collider.GetComponent<IContainer>();
+                var hitContainer = hit.collider.GetComponent<Container>();
                 if (hitContainer != null && hitContainer != holdingContainer)
                 {
                     gameSystemControl.MoveItem(holdingContainer, hitContainer); // holdingContainer의 아이템을 hitContainer로 이동 시도
                 }
                 else
                 {
-                    holdingContainer.SetItem(holdingContainer.GetItem()); // 원래 위치로 이동
+                    holdingContainer.SetItem(holdingContainer.Item); // 원래 위치로 이동
                 }
             }
             else
             {
-                holdingContainer.SetItem(holdingContainer.GetItem()); // 원래 위치로 이동
+                holdingContainer.SetItem(holdingContainer.Item); // 원래 위치로 이동
             }
 
-            holdingContainer.GetGameObject().layer = LayerMask.NameToLayer(LayerNameDefine.CONTAINER_LAYER_NAME);
+            holdingContainer.gameObject.layer = LayerMask.NameToLayer(LayerNameDefine.CONTAINER_LAYER_NAME);
             holdingContainer = null; // holdingContainer를 초기화
         }
         else if (Input.GetMouseButton(0)) // Holding
@@ -121,7 +122,7 @@ public class InputControl : MonoBehaviour
             if (plane.Raycast(ray, out float distance))
             {
                 var worldPos = ray.GetPoint(distance);
-                holdingContainer.GetItem().SetPosition(worldPos); // holding의 위치를 업데이트
+                holdingContainer.Item.SetPosition(worldPos); // holding의 위치를 업데이트
             }
         }
     }
@@ -148,11 +149,11 @@ public class InputControl : MonoBehaviour
                 if (Physics.Raycast(ray, out var hit, raycastDistance, LayerMask.GetMask(LayerNameDefine.CONTAINER_LAYER_NAME))) // Container Layer 캐스트
                 {
                     // 히트 오브젝트가 IContainer인터페이스를 구현하는 컴포넌트를 가지고 있는지 확인
-                    var hitContainer = hit.collider.GetComponent<IContainer>();
-                    if (hitContainer != null && hitContainer.GetItem() != null) // 아이템을 가지고 있는 컨테이너 인 경우에만 캐싱함.
+                    var hitContainer = hit.collider.GetComponent<Container>();
+                    if (hitContainer != null && hitContainer.Item != null) // 아이템을 가지고 있는 컨테이너 인 경우에만 캐싱함.
                     {
                         holdingContainer = hitContainer; // holdingContainer에 캐싱
-                        holdingContainer.GetGameObject().layer = LayerMask.NameToLayer(LayerNameDefine.HOLDING_CONTAINER_LAYER_NAME); // 다른 오브젝트를 레이 캐스트가 발견할 수 있게 레이어 임시 변경
+                        holdingContainer.gameObject.layer = LayerMask.NameToLayer(LayerNameDefine.HOLDING_CONTAINER_LAYER_NAME); // 다른 오브젝트를 레이 캐스트가 발견할 수 있게 레이어 임시 변경
                     }
                 }
 
@@ -172,7 +173,7 @@ public class InputControl : MonoBehaviour
                 if (plane.Raycast(ray, out float distance))
                 {
                     var worldPos = ray.GetPoint(distance);
-                    holdingContainer.GetItem().SetPosition(worldPos); // holding의 위치를 업데이트
+                    holdingContainer.Item.SetPosition(worldPos); // holding의 위치를 업데이트
                 }
 
                 break;
@@ -185,22 +186,22 @@ public class InputControl : MonoBehaviour
                 if (Physics.Raycast(ray, out var hit, raycastDistance, LayerMask.GetMask(LayerNameDefine.CONTAINER_LAYER_NAME))) // Container Layer 캐스트
                 {
                     // 히트 오브젝트가 IContainer인터페이스를 구현하는 컴포넌트를 가지고 있는지 확인
-                    var hitContainer = hit.collider.GetComponent<IContainer>();
+                    var hitContainer = hit.collider.GetComponent<Container>();
                     if (hitContainer != null && hitContainer != holdingContainer)
                     {
                         gameSystemControl.MoveItem(holdingContainer, hitContainer); // holdingContainer의 아이템을 hitContainer로 이동 시도
                     }
                     else
                     {
-                        holdingContainer.SetItem(holdingContainer.GetItem()); // 원래 위치로 이동
+                        holdingContainer.SetItem(holdingContainer.Item); // 원래 위치로 이동
                     }
                 }
                 else
                 {
-                    holdingContainer.SetItem(holdingContainer.GetItem()); // 원래 위치로 이동
+                    holdingContainer.SetItem(holdingContainer.Item); // 원래 위치로 이동
                 }
 
-                holdingContainer.GetGameObject().layer = LayerMask.NameToLayer(LayerNameDefine.CONTAINER_LAYER_NAME);
+                holdingContainer.gameObject.layer = LayerMask.NameToLayer(LayerNameDefine.CONTAINER_LAYER_NAME);
                 holdingContainer = null; // holdingContainer를 초기화
 
                 break;
