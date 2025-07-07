@@ -9,6 +9,7 @@ using static UnityEditor.Progress;
 /// </summary>
 public class ContainerLine : MonoBehaviour
 {
+    public bool IsCleared { get; private set; } = false; // 라인이 클리어 되었는지 여부
     public int LineIndex { get; private set; } = -1;
     public ObjectColor Color { get; private set; }
     public Dictionary<int, FixedContainer> containerDictioanry = new Dictionary<int, FixedContainer>();
@@ -30,6 +31,8 @@ public class ContainerLine : MonoBehaviour
         {
             container.Reset();
         }
+
+        IsCleared = false;
     }
 
     private void Update()
@@ -51,6 +54,8 @@ public class ContainerLine : MonoBehaviour
     /// </summary>
     public void Init(int lineIndex, ObjectColor color)
     {
+        Reset();
+
         this.gameObject.SetActive(true); // 컨테이너 라인을 활성화
 
         containerDictioanry.Clear();
@@ -114,6 +119,7 @@ public class ContainerLine : MonoBehaviour
             container.Reset(); // 컨테이너 초기화
         }
 
+        IsCleared = true;
         gameObject.SetActive(false); // 라인 전체 비활성화
     }
 }

@@ -102,8 +102,6 @@ public class GameSystemControl : MonoBehaviour
 
         if (CheckLine(lineIndex))
         {
-            Debug.Log("성공");
-
             lineClearParticle.transform.position = containerLineDictionary[lineIndex].transform.position - Vector3.forward * 1f;
             lineClearParticle.Play();
 
@@ -115,6 +113,22 @@ public class GameSystemControl : MonoBehaviour
             }
 
             sharedContainer.Fall(); // 공유 컨테이너도 추락 처리
+
+            bool isEveryContainerCleared = true;
+
+            foreach (var containerLine in containerLines)
+            {
+                if (containerLine.IsCleared == false)
+                {
+                    isEveryContainerCleared = false;
+                    break;
+                }
+            }
+
+            if (isEveryContainerCleared)
+            {
+                GameFlowControl.Instance.ClearGame(); // 모든 컨테이너가 클리어되면 게임 클리어 처리
+            }
         }
 
         return true;
