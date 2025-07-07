@@ -171,6 +171,7 @@ MonoBehaviour:
   colorMaterialTable: {fileID: 11400000, guid: 50c6a0ee0ce8f2948adeb08b91692371, type: 2}
   timeLimit: 60
   inputControl: {fileID: 1545462878}
+  itemPool: {fileID: 0}
   containerLines:
   - {fileID: 1064143566}
   - {fileID: 1218343612}
@@ -2945,6 +2946,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a84c67b38fc8240b3aa3121a8de19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1545385987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1545385989}
+  - component: {fileID: 1545385988}
+  m_Layer: 0
+  m_Name: Item Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1545385988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545385987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7eb6479c43c70c4091f8f2da92073bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 1545385989}
+  poolingObjectPrefab: {fileID: 4007205998860485578, guid: a668c626b02ccfb4fa4847d030963aa1,
+    type: 3}
+  warmUpCount: 27
+--- !u!4 &1545385989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545385987}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.408464, y: -10.205467, z: 19.193327}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1545462877
 GameObject:
   m_ObjectHideFlags: 0
@@ -3538,3 +3587,4 @@ SceneRoots:
   - {fileID: 914938304}
   - {fileID: 38464338}
   - {fileID: 1699621003}
+  - {fileID: 1545385989}

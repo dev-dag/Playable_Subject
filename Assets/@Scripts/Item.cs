@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : PoolingObject
 {
     [SerializeField] private Vector3 offset;
 
