@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -22,12 +23,14 @@ public class GameSystemControl : MonoBehaviour
     [SerializeField] private SharedContainer sharedContainer;
     [SerializeField] private float containerYDelta = 1.02f; // 컨테이너 Y축 크기
 
-    [Space]
+    [Space(30f)]
     [SerializeField] private ParticleSystem lineClearParticle;
+
+    [Space(30f)]
+    [SerializeField] private TMP_Text timerTmp;
 
     private Dictionary <int, ContainerLine> containerLineDictionary = new Dictionary<int, ContainerLine>();
     private float endTime = 0.0f;
-    private GameState state = GameState.Wait;
 
 #if UNITY_EDITOR
     private void OnGUI()
@@ -60,8 +63,21 @@ public class GameSystemControl : MonoBehaviour
 
         containerLineDictionary.Clear();
         endTime = 0f;
-        state = GameState.Wait;
         inputControl.Disable();
+    }
+
+    private void Update()
+    {
+        if (Time.time >= endTime)
+        {
+            timerTmp.text = "0s"; // 타이머가 끝나면 0으로 표시
+            inputControl.Disable();
+            GameFlowControl.Instance.FailGame();
+        }
+        else
+        {
+            timerTmp.text = $"{(endTime - Time.time).ToString("F2")}s"; // 남은 시간 설정
+        }
     }
 
     /// <summary>
@@ -73,7 +89,7 @@ public class GameSystemControl : MonoBehaviour
 
         containerLineDictionary.Clear();
         endTime = Time.time + timeLimit;
-        state = GameState.Playing;
+        timerTmp.text = $"{timeLimit}s"; // 타이머 초기화
 
         // 컨테이너 초기화
         MakeContainer();
