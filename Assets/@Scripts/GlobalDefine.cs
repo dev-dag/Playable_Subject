@@ -19,7 +19,6 @@ public enum ObjectColor
     Red,
     Green,
     Blue,
-    Yellow,
     Pink,
     Orange,
     Mint

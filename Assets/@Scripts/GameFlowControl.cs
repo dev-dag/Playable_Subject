@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// 게임의 흐름을 제어하는 클래스
+/// 게임의 흐름을 제어하는 클래스이자, 모든 코드의 시작점.
 /// </summary>
 public class GameFlowControl : SingleTon<GameFlowControl>
 {
@@ -12,11 +12,24 @@ public class GameFlowControl : SingleTon<GameFlowControl>
 
     private bool isNeedTutorial = true;
 
-    public void InitalizeGame()
+    protected override void Awake()
     {
+        base.Awake();
 
+        InitalizeGame();
     }
 
+    /// <summary>
+    /// 게임을 초기화하는 함수
+    /// </summary>
+    public void InitalizeGame()
+    {
+        GameSystemControl.InitialzieAndStart();
+    }
+
+    /// <summary>
+    /// 게임을 일시 정지하는 함수
+    /// </summary>
     public void PauseGame()
     {
 

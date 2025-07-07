@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e192c8de34ed042419067fc39ce5138a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6853
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e192c8de34ed042419067fc39ce5138a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4064002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e192c8de34ed042419067fc39ce5138a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.20165
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e192c8de34ed042419067fc39ce5138a,
         type: 3}
@@ -118,3 +118,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 7467123449266689529}
   offset: {x: -0.1947001, y: 0, z: 0}
+  container: {fileID: 0}

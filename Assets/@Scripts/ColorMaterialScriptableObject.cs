@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 컬러와 머터리얼의 매핑 데이터를 제공하는 클래스
+/// </summary>
 [CreateAssetMenu(fileName = "ColorMaterial", menuName = "ScriptableObjects/ColorMaterial", order = 1)]
 public class ColorMaterialScriptableObject : ScriptableObject
 {

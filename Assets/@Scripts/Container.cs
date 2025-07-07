@@ -6,13 +6,22 @@
 public class Container : MonoBehaviour
 {
     public ObjectColor Color { get; private set; }
-    public int LineIndex { get; private set; }
-    public int ContainerIndex { get; private set; }
+    public int LineIndex { get; private set; } = -1;
+    public int ContainerIndex { get; private set; } = -1;
 
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private Vector3 itemOffset;
 
     private Item item;
+
+    public void Reset()
+    {
+        Color = ObjectColor.None;
+        LineIndex = -1;
+        ContainerIndex = -1;
+        item?.Return(); // 아이템을 풀에 반환
+        item = null;
+    }
 
     /// <summary>
     /// 초기화 함수.
@@ -36,5 +45,9 @@ public class Container : MonoBehaviour
     {
         item = newItem;
         item.SetPosition(transform.position + itemOffset); // 아이템의 위치를 컨테이너 위치로 설정
+
+#if UNITY_EDITOR
+        item.container = this; // 디버그용
+#endif
     }
 }
