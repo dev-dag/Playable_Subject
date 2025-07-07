@@ -31,4 +31,9 @@ public class SharedContainer : MonoBehaviour, IContainer
     {
         return gameObject;
     }
+
+    public int GetLineIndex()
+    {
+        return -1;
+    }
 }

@@ -13,5 +13,14 @@ public interface IContainer
     /// </summary>
     public Item GetItem();
 
+    /// <summary>
+    /// 소속된 라인의 인덱스를 반환하는 함수
+    /// </summary>
+    /// <returns>GameSystemControl에 의해 할당된 라인 인덱스 값</returns>
+    public int GetLineIndex();
+
+    /// <summary>
+    /// 게임 오브젝트를 반환하는 함수
+    /// </summary>
     public GameObject GetGameObject();
 }

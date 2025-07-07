@@ -83,9 +83,18 @@ public class GameSystemControl : MonoBehaviour
             from.SetItem(from.GetItem());
             return false;
         }
+        else if (from.GetItem() == null)
+        {
+            return false;
+        }
 
         to.SetItem(from.GetItem()); // to에 아이템 설정
         from.SetItem(null);
+
+        if (CheckLine(to.GetLineIndex()))
+        {
+            Debug.Log("성공");
+        }
 
         return true;
     }
@@ -117,9 +126,6 @@ public class GameSystemControl : MonoBehaviour
 
             containerLine.Init(containerLineIndex, color);
             containerLineDictionary.Add(containerLineIndex, containerLine);
-
-            Debug.Log($"컨테이너 라인 초기화 : 인덱스 = {containerLine.LineIndex}, 컬러 = {containerLine.Color}");
-
             colorTable.RemoveAt(randomColorIndex); // 사용한 색상을 랜덤 테이블에서 제거
 
             containerLineIndex++;
@@ -137,8 +143,6 @@ public class GameSystemControl : MonoBehaviour
                 newItem.Init(itemID, containerLine.Color);
                 tempItemList.Add(newItem);
 
-                Debug.Log($"아이템 생성 : 아이템 ID = {itemID}, 아이템 컬러 = {newItem.color.ToString()}");
-
                 itemID++;
             }
         }
@@ -152,11 +156,34 @@ public class GameSystemControl : MonoBehaviour
                 var randomItem = tempItemList[randomIndex];
 
                 container.SetItem(randomItem);
-
-                Debug.Log($"컨테이너에 아이템 랜덤 할당 : 아이템 ID = {randomItem.ID}, 아이템 컬러 = {randomItem.color.ToString()}, 컨테이너 인덱스 = {container.ContainerIndex}, 라인 인덱스 = {container.LineIndex}");
-
                 tempItemList.RemoveAt(randomIndex); // 사용한 아이템을 리스트에서 제거
             }
         }
+    }
+
+    /// <summary>
+    /// 한 줄이 같은 색으로 채워졌는지 체크하는 함수
+    /// </summary>
+    /// <param name="lineIndex">컨테이너 라인 인덱스</param>
+    /// <returns>한 줄이 모두 같은색이면 true 반환</returns>
+    private bool CheckLine(int lineIndex)
+    {
+        if (containerLineDictionary.TryGetValue(lineIndex, out var containerLine))
+        {
+            var containerDictioanry = containerLine.containerDictioanry;
+            var lineColor = containerLine.Color;
+
+            foreach (var container in containerDictioanry.Values)
+            {
+                if (container.GetItem()?.color != lineColor)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

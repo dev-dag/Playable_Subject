@@ -64,4 +64,9 @@ public class Container : MonoBehaviour, IContainer
     {
         return gameObject;
     }
+
+    public int GetLineIndex()
+    {
+        return LineIndex;
+    }
 }
