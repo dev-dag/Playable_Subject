@@ -1702,11 +1702,11 @@ MonoBehaviour:
   - {fileID: 814396285}
   - {fileID: 1223879123}
   time1: 0.5
-  ease1: 1
+  ease1: 20
   time2: 0.25
-  ease2: 1
-  time3: 0.1
-  ease3: 1
+  ease2: 18
+  time3: 0.15
+  ease3: 20
 --- !u!1001 &814396283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1854,11 +1854,11 @@ MonoBehaviour:
   - {fileID: 1477540834}
   - {fileID: 1392174649}
   time1: 0.5
-  ease1: 1
+  ease1: 20
   time2: 0.25
-  ease2: 1
-  time3: 0.1
-  ease3: 1
+  ease2: 18
+  time3: 0.15
+  ease3: 20
 --- !u!1 &914938302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,11 +2003,11 @@ MonoBehaviour:
   - {fileID: 563402606}
   - {fileID: 1701963371}
   time1: 0.5
-  ease1: 1
+  ease1: 20
   time2: 0.25
-  ease2: 1
-  time3: 0.1
-  ease3: 1
+  ease2: 18
+  time3: 0.15
+  ease3: 20
 --- !u!1001 &1090565159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2119,11 +2119,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOffset: {x: 0, y: -0.443, z: -0.176}
   time1: 0.5
-  ease1: 1
+  ease1: 20
   time2: 0.25
-  ease2: 1
-  time3: 0.1
-  ease3: 1
+  ease2: 18
+  time3: 0.15
+  ease3: 20
 --- !u!65 &1157808186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2650,11 +2650,11 @@ MonoBehaviour:
   - {fileID: 1668635812}
   - {fileID: 1287583715}
   time1: 0.5
-  ease1: 1
+  ease1: 20
   time2: 0.25
-  ease2: 1
-  time3: 0.1
-  ease3: 1
+  ease2: 18
+  time3: 0.15
+  ease3: 20
 --- !u!1001 &1477540832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3477,11 +3477,11 @@ MonoBehaviour:
   - {fileID: 1508006726}
   - {fileID: 1354545992}
   time1: 0.5
-  ease1: 1
+  ease1: 20
   time2: 0.25
-  ease2: 1
-  time3: 0.1
-  ease3: 1
+  ease2: 18
+  time3: 0.15
+  ease3: 20
 --- !u!1001 &1915611591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3627,11 +3627,11 @@ MonoBehaviour:
   - {fileID: 517117552}
   - {fileID: 721514181}
   time1: 0.5
-  ease1: 1
+  ease1: 20
   time2: 0.25
-  ease2: 1
-  time3: 0.1
-  ease3: 1
+  ease2: 18
+  time3: 0.15
+  ease3: 20
 --- !u!1001 &2065107051
 PrefabInstance:
   m_ObjectHideFlags: 0
