@@ -103,6 +103,14 @@ public class ContainerLine : MonoBehaviour
                 transform.DOMoveY(transform.position.y - yDelta, time3).SetEase(ease3).OnComplete(() =>
                 {
                     isPlayingAnimation = false;
+
+                    foreach (var container in containers)
+                    {
+                        if (container.Item != null)
+                        {
+                            container.Item.SetPosition(container.transform.position + container.ItemOffset); // 아이템의 위치를 컨테이너 위치로 설정
+                        }
+                    }
                 });
             });
         });

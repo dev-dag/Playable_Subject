@@ -48,6 +48,8 @@ public class SharedContainer : Container
                 transform.DOMoveY(transform.position.y - yDelta, time3).SetEase(ease3).OnComplete(() =>
                 {
                     isPlayingAnimation = false;
+
+                    Item.SetPosition(transform.position + ItemOffset); // 아이템의 위치를 컨테이너 위치로 설정
                 });
             });
         });
