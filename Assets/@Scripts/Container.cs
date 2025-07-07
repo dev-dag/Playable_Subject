@@ -3,7 +3,7 @@
 /// <summary>
 /// 아이템을 넣어둘 수 있는 컨테이너.
 /// </summary>
-public class Container : MonoBehaviour
+public class Container : MonoBehaviour, IContainer
 {
     public ObjectColor Color { get; private set; }
     public int LineIndex { get; private set; } = -1;
@@ -44,10 +44,24 @@ public class Container : MonoBehaviour
     public void SetItem(Item newItem)
     {
         item = newItem;
-        item.SetPosition(transform.position + itemOffset); // 아이템의 위치를 컨테이너 위치로 설정
+
+        if (item != null)
+        {
+            item.SetPosition(transform.position + itemOffset); // 아이템의 위치를 컨테이너 위치로 설정
 
 #if UNITY_EDITOR
-        item.container = this; // 디버그용
+            item.container = this; // 디버그용
 #endif
+        }
+    }
+
+    public Item GetItem()
+    {
+        return item;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

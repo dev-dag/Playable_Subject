@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 
 /// <summary>
+/// 레이어 이름을 정의하는 구조체
+/// </summary>
+public struct LayerNameDefine
+{
+    public static readonly string CONTAINER_LAYER_NAME = "Container";
+    public static readonly string HOLDING_CONTAINER_LAYER_NAME = "HoldingContainer";
+}
+
+/// <summary>
 /// 컬러 - 머터리얼 매핑을 위한 스트럭쳐
 /// </summary>
 [System.Serializable]

@@ -39,6 +39,8 @@ public class GameSystemControl : MonoBehaviour
             containerLine.Reset(); // 컨테이너 라인 초기화
         }
 
+        sharedContainer.GetItem()?.Return();
+
         containerLineDictionary.Clear();
         endTime = 0f;
         state = GameState.Wait;
@@ -66,6 +68,26 @@ public class GameSystemControl : MonoBehaviour
         }
 
         inputControl.Enable();
+    }
+
+    /// <summary>
+    /// 아이템을 특정 컨테이너로 이동시키는 함수
+    /// </summary>
+    /// <param name="from">원래 아이템이 있던 컨테이너</param>
+    /// <param name="to">이동시킬 컨테이너</param>
+    /// <returns>to에 아이템이 있으면 false반환.</returns>
+    public bool MoveItem(IContainer from, IContainer to)
+    {
+        if (to.GetItem() != null)
+        {
+            from.SetItem(from.GetItem());
+            return false;
+        }
+
+        to.SetItem(from.GetItem()); // to에 아이템 설정
+        from.SetItem(null);
+
+        return true;
     }
 
     /// <summary>

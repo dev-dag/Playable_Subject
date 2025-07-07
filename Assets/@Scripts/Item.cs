@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// 컨테이너에 들어갈 아이템 클래스
+/// 컨테이너에 들어갈 아이템 클래스. 아이템은 하이어러키 상에서 컨테이너의 자식으로 설정되지 않음. (최적화를 위함)
 /// </summary>
 public class Item : PoolingObject
 {
