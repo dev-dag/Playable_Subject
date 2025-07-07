@@ -31,6 +31,11 @@ public class InputControl : MonoBehaviour
         }
     }
 
+    private void Reset()
+    {
+        holdingContainer = null;
+    }
+
     /// <summary>
     /// 모듈을 초기화하는 함수
     /// </summary>
@@ -53,6 +58,7 @@ public class InputControl : MonoBehaviour
     /// </summary>
     public void Disable()
     {
+        Reset();
         IsActive = false;
     }
 
