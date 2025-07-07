@@ -5,13 +5,14 @@
 /// </summary>
 public class Container : MonoBehaviour
 {
+    public ObjectColor Color { get; private set; }
     public int LineIndex { get; private set; }
     public int ContainerIndex { get; private set; }
 
     [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private Vector3 itemOffset;
 
     private Item item;
-    private ObjectColor color;
 
     /// <summary>
     /// 초기화 함수.
@@ -25,15 +26,15 @@ public class Container : MonoBehaviour
         ContainerIndex = containerIndex;
 
         meshRenderer.material = colorMaterial.material;
-        color = colorMaterial.color;
+        Color = colorMaterial.color;
     }
 
     /// <summary>
     /// 컨테이너에 아이템을 넣는 함수
     /// </summary>
-    /// <param name="newItem">넣을 아이템</param>
     public void SetItem(Item newItem)
     {
         item = newItem;
+        item.SetPosition(transform.position + itemOffset); // 아이템의 위치를 컨테이너 위치로 설정
     }
 }

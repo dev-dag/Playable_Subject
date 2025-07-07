@@ -10,6 +10,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0afa25cb82bcc4cc9914399f1ceee635,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0afa25cb82bcc4cc9914399f1ceee635,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0afa25cb82bcc4cc9914399f1ceee635,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0afa25cb82bcc4cc9914399f1ceee635,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
       objectReference: {fileID: 0}
@@ -58,6 +73,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0afa25cb82bcc4cc9914399f1ceee635,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 0afa25cb82bcc4cc9914399f1ceee635,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -71,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0afa25cb82bcc4cc9914399f1ceee635,
         type: 3}
       propertyPath: m_Name
-      value: Case
+      value: Container
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -101,8 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 4248959619670072111}
-  lineIndex: 0
-  containerIndex: 0
+  itemOffset: {x: 0, y: -0.443, z: -0.176}
 --- !u!23 &4248959619670072111 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 0afa25cb82bcc4cc9914399f1ceee635,
