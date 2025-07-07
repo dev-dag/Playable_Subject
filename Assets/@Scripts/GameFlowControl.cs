@@ -11,6 +11,8 @@ public class GameFlowControl : SingleTon<GameFlowControl>
     [SerializeField] private GameSystemControl gameSystemControl;
 
     private bool isNeedTutorial = true;
+    private int restartableCount = 3;
+    private int playCount = 0;
 
     protected override void Awake()
     {
@@ -24,15 +26,8 @@ public class GameFlowControl : SingleTon<GameFlowControl>
     /// </summary>
     public void InitalizeGame()
     {
+        playCount++;
         GameSystemControl.InitialzieAndStart();
-    }
-
-    /// <summary>
-    /// 게임을 일시 정지하는 함수
-    /// </summary>
-    public void PauseGame()
-    {
-
     }
 
     /// <summary>
@@ -40,7 +35,14 @@ public class GameFlowControl : SingleTon<GameFlowControl>
     /// </summary>
     public void FailGame()
     {
-
+        if (playCount <= restartableCount)
+        {
+            endCardControl.ShowEndCard(true);
+        }
+        else
+        {
+            endCardControl.ShowEndCard(false);
+        }
     }
 
     /// <summary>
@@ -48,6 +50,13 @@ public class GameFlowControl : SingleTon<GameFlowControl>
     /// </summary>
     public void ClearGame()
     {
-
+        if (playCount <= restartableCount)
+        {
+            endCardControl.ShowEndCard(true);
+        }
+        else
+        {
+            endCardControl.ShowEndCard(false);
+        }
     }
 }
