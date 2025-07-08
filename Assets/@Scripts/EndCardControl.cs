@@ -47,6 +47,6 @@ public class EndCardControl : MonoBehaviour
     /// </summary>
     public void DownloadButtonClickEventHandler()
     {
-        Application.OpenURL(downloadPageUrl);
+        Luna.Unity.Playable.InstallFullGame(downloadPageUrl, downloadPageUrl);
     }
 }
